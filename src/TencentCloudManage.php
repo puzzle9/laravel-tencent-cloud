@@ -37,6 +37,12 @@ class TencentCloudManage
      */
     public function with(string $name)
     {
+        if (strstr($name, 'Help')) {
+            $class_name = ucfirst($name);
+            $help = "Puzzle9\\TencentCloudSdk\\Help\\${class_name}";
+            return new $help;
+        }
+
         $config = config('tencentsdk');
         
         $credential = $this->getCredential();

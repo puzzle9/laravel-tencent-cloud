@@ -2,6 +2,7 @@
 
 namespace Puzzle9\TencentCloudSdk;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Facade as LaravelFacade;
 
 class TencentCloudSdk extends LaravelFacade
@@ -20,7 +21,7 @@ class TencentCloudSdk extends LaravelFacade
     {
         return static::getFacadeRoot()->with($name);
     }
-
+    
     /**
      * live
      * @return \TencentCloud\Live\V20180801\LiveClient
@@ -30,6 +31,15 @@ class TencentCloudSdk extends LaravelFacade
         return self::with('live');
     }
 
+    /**
+     * live help
+     * @return Help\LiveHelp
+     */
+    public static function createLiveHelpDriver()
+    {
+        return self::with('liveHelp');
+    }
+    
     /**
      * cvm
      * @return \TencentCloud\Cvm\V20170312\CvmClient

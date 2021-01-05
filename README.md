@@ -51,17 +51,39 @@ TENCENT_SECRET_KEY=
 ```
 
 ## 使用
+- <https://cloud.tencent.com/document/api>
 
 ```php
 use Puzzle9\TencentCloudSdk\TencentCloudSdk;
 
+// 具体使用方式详见相关服务使用文档
+```
+
+### 直播
+
+```php
 $live = TencentCloudSdk::with('live');
 //or
 $live = TencentCloudSdk::createLiveDriver();
 
-// 具体使用方式详见相关服务使用文档
-//https://cloud.tencent.com/document/api
+$live_help = TencentCloudSdk::with('liveHelp');
+//or
+$live_help = TencentCloudSdk::createLiveHelpDriver();
+
+// 生成推流地址
+$push_url = $live_help->getPushUrl('streamName');
+
+// 生成包含防盗链推的流地址
+$push_url = $live_help->getPushUrl('streamName', now()->addHour());
+
+// 获得拉流地址
+$push_url = $live_help->getPullUrl('streamName');
+
+// 获得包含防盗链拉的流地址
+$push_url = $live_help->getPullUrl('streamName', now()->addHour());
 ```
+
+### ...
 
 # todo
 - [ ] `TencentCloudSdk::with` 支持动态文档
