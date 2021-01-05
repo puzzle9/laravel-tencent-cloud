@@ -70,3 +70,6 @@ $live = TencentCloudSdk::createLiveDriver();
 - [ ] 完善 `config/tencentsdk.php` 文件
 - [ ] 让其更人性化一点
 - [x] 第一个版本
+
+# 感谢
+- <https://github.com/larvacent/laravel-tencent-cloud>
