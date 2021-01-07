@@ -9,7 +9,8 @@
   "type": "library",
   "require": {
     "illuminate/support": "^6.0 || ^7.0 || ^8.0",
-    "tencentcloud/common": "3.x"
+    "tencentcloud/common": "3.x",
+    "ext-json": "*"
   },
   "require-dev": {
     "laravel/framework": "^8.0",

@@ -15,6 +15,9 @@ return [
     
     // 直播
     'live' => [
+        'notify' => [
+            'key' => env('TENCENT_LIVE_NOTIFY_KEY'),
+        ],
         'pull' => [
             // 拉流主key
             'key_main' => env('TENCENT_LIVE_PULL_KEY_MAIN'),

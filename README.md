@@ -81,6 +81,12 @@ $push_url = $live_help->getPullUrl('streamName');
 
 // 获得包含防盗链拉的流地址
 $push_url = $live_help->getPullUrl('streamName', now()->addHour());
+
+// 直播回调验证
+$data = $live_help->notifyVerify();
+
+// 直播回调相应
+$live_help->notifySuccess();
 ```
 
 ### ...
