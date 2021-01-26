@@ -11,6 +11,7 @@ return [
     	'live' => \TencentCloud\Live\V20180801\LiveClient::class,
         'cvm' => \TencentCloud\Cvm\V20170312\CvmClient::class,
         'mariadb' => \TencentCloud\Mariadb\V20170312\MariadbClient::class,
+        'trtc' => \TencentCloud\Trtc\V20190722\TrtcClient::class,
     ],
     
     // 直播
@@ -34,5 +35,11 @@ return [
             // 推流域名
             'host' => env('TENCENT_LIVE_PUSH_HOST'),
         ],
+    ],
+
+    // 实时音视频
+    'trtc' => [
+        'sdk_appid' => env('TENCENT_RTC_SDK_APPID'),
+        'sdk_secret' => env('TENCENT_RTC_SDK_SECRET'),
     ],
 ];

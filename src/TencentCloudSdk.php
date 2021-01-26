@@ -48,4 +48,32 @@ class TencentCloudSdk extends LaravelFacade
     {
         return self::with('cvm');
     }
+
+    /**
+     * trtc
+     * @url https://cloud.tencent.com/document/product/647/37077
+     * @return \TencentCloud\Trtc\V20190722\TrtcClient
+     */
+    public static function createTrtcDriver()
+    {
+        return self::with('trtc');
+    }
+    
+    /**
+     * live help
+     * @return Help\TrtcHelp
+     */
+    public static function createTrtcHelpDriver()
+    {
+        return self::with('trtcHelp');
+    }
+    
+    /**
+     * user sig
+     * @return \Tencent\TLSSigAPIv2
+     */
+    public static function userSig()
+    {
+        return new \Tencent\TLSSigAPIv2();
+    }
 }

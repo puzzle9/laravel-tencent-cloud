@@ -10,22 +10,6 @@
 composer require puzzle9/laravel-tencent-cloud-sdk -vvv
 ```
 
-## 相关服务
-
-<https://github.com/tencentcloud-sdk-php>
-
-### 直播
-
-- <https://github.com/tencentcloud-sdk-php/live>
-
-```shell
-composer require tencentcloud/live -vvv
-```
-
-### ...
-
-# 使用
-
 ## 推送配置
 
 ```shell
@@ -39,7 +23,23 @@ TENCENT_SECRET_ID=
 TENCENT_SECRET_KEY=
 ```
 
-## 加入相关服务
+# 使用
+
+- <https://cloud.tencent.com/document/api>
+
+```php
+use Puzzle9\TencentCloudSdk\TencentCloudSdk;
+
+// 具体使用方式详见相关服务使用文档
+```
+
+## 直播
+
+```shell
+composer require tencentcloud/live -vvv
+```
+
+### 加入相关服务
 
 `config/tencentsdk.php`
 
@@ -49,17 +49,6 @@ TENCENT_SECRET_KEY=
     	// ...
     ],
 ```
-
-## 使用
-- <https://cloud.tencent.com/document/api>
-
-```php
-use Puzzle9\TencentCloudSdk\TencentCloudSdk;
-
-// 具体使用方式详见相关服务使用文档
-```
-
-### 直播
 
 ```php
 $live = TencentCloudSdk::with('live');
@@ -89,9 +78,56 @@ $data = $live_help->notifyVerify();
 $live_help->notifySuccess();
 ```
 
-### ...
+## 实时音视频 / im
+
+### 获取 UserSig
+
+```shell
+composer require tencent/tls-sig-api-v2 -vvv
+```
+
+### 实时音视频
+
+```shell
+composer require tencentcloud/trtc -vvv
+```
+
+#### 加入相关服务
+
+`config/tencentsdk.php`
+
+```php
+    'drivers' => [
+        'trtc' => \TencentCloud\Trtc\V20190722\TrtcClient::class,
+    	// ...
+    ],
+```
+
+```php
+$trtc = TencentCloudSdk::with('trtc');
+//or
+$trtc = TencentCloudSdk::createTrtcDriver();
+
+$trtc_help = TencentCloudSdk::with('trtcHelp');
+//or
+$trtc_help = TencentCloudSdk::createTrtcHelpDriver();
+
+// 获取 trtc sdk appid
+$trtc_sdk_appid = $trtc_help->getSdkAppId();
+
+// 获取 user sig
+$sig = $trtc_help->userSig();
+$user_sig = $sig->genUserSig('user_id');
+```
+
+### im
+
+- [ ] 重写 <https://github.com/puzzle9/laravel-tencent-cloud-sdk-im>
+
+## ...
 
 # todo
+
 - [ ] `TencentCloudSdk::with` 支持动态文档
 - [ ] `TencentCloudSdk::createXXXDriver()` 支持动态创建
 - [ ] 不同服务支持动态 `ID` `KEY`
@@ -100,4 +136,5 @@ $live_help->notifySuccess();
 - [x] 第一个版本
 
 # 感谢
+
 - <https://github.com/larvacent/laravel-tencent-cloud>
