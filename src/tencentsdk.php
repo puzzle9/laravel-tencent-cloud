@@ -12,6 +12,7 @@ return [
         'cvm' => \TencentCloud\Cvm\V20170312\CvmClient::class,
         'mariadb' => \TencentCloud\Mariadb\V20170312\MariadbClient::class,
         'trtc' => \TencentCloud\Trtc\V20190722\TrtcClient::class,
+        'sms' => \TencentCloud\Sms\V20210111\SmsClient::class,
     ],
     
     // 直播

@@ -58,6 +58,15 @@ class TencentCloudSdk extends LaravelFacade
     {
         return self::with('trtc');
     }
+
+    /**
+     * sms
+     * @return \TencentCloud\Sms\V20210111\SmsClient
+     */
+    public static function createSmsDriver()
+    {
+        return self::with('sms');
+    }
     
     /**
      * live help

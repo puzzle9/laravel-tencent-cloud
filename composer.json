@@ -8,12 +8,13 @@
   "license": "MIT",
   "type": "library",
   "require": {
-    "illuminate/support": "^5.0 || ^6.0 || ^7.0 || ^8.0",
-    "tencentcloud/common": "3.x",
-    "ext-json": "*"
+    "php": ">=7.4",
+    "ext-json": "*",
+    "illuminate/support": ">=7.0",
+    "tencentcloud/common": "3.x"
   },
   "require-dev": {
-    "laravel/framework": "^8.0",
+    "laravel/framework": "^10.0",
     "tencentcloud/tencentcloud-sdk-php": "^3.0",
     "tencent/tls-sig-api-v2": "^1.1"
   },
