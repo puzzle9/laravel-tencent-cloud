@@ -16,10 +16,10 @@ class TencentCloudManage
     public function getCredential()
     {
         $config = config('tencentsdk');
-        
+
         $secret_id = $config['secret_id'];
         $secret_key = $config['secret_key'];
-        
+
         if (!$secret_id) {
             throw new InvalidArgumentException('error tencentsdk secret_id');
         }
@@ -27,15 +27,16 @@ class TencentCloudManage
         if (!$secret_key) {
             throw new InvalidArgumentException('error tencentsdk secret_key');
         }
-        
+
         return new Credential($secret_id, $secret_key, $config['token']);
     }
-    
+
     /**
      * 获取相关服务
-     * @param string $name 服务名称
+     * @param string        $name   服务名称
+     * @param string | null $region 地区
      */
-    public function with(string $name)
+    public function with(string $name, $region = null)
     {
         if (strstr($name, 'Help')) {
             $class_name = ucfirst($name);
@@ -44,17 +45,17 @@ class TencentCloudManage
         }
 
         $config = config('tencentsdk');
-        
+
         $credential = $this->getCredential();
-        
+
         $drivers = $config['drivers'];
-        
+
         $client = isset($drivers[$name]) ? $drivers[$name] : null;
-        
+
         if (!$client) {
             throw new InvalidArgumentException("error $name in tencentsdk drivers");
         }
-        
-        return new $client($credential, $config['region']);
+
+        return new $client($credential, $region ?: $config['region']);
     }
 }

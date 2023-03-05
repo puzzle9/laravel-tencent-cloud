@@ -124,6 +124,46 @@ $user_sig = $sig->genUserSig('user_id');
 
 - [ ] 重写 <https://github.com/puzzle9/laravel-tencent-cloud-sdk-im>
 
+## 短信
+
+```shell
+composer require tencentcloud/sms -vvv
+```
+
+### 加入相关服务
+
+`config/tencentsdk.php`
+
+```php
+    'drivers' => [
+        'sms' => \TencentCloud\Sms\V20210111\SmsClient::class,
+        // ...
+    ],
+    
+     // 短信
+    'sms'     => [
+        'region'         => 'ap-beijing',
+        'sms_sdk_app_id' => env('TENCENT_SMS_APP_ID'),
+        'sign_name'      => env('TENCENT_SMS_SIGN_NAME'),
+        'template_id'    => env('TENCENT_SMS_TEMPLATE_ID'),
+    ],
+```
+
+```php
+$sms = TencentCloudSdk::with('sms');
+//or
+$sms = TencentCloudSdk::createSmsDriver();
+
+$sms_help = TencentCloudSdk::with('smsHelp');
+//or
+$sms_help = TencentCloudSdk::createSmsHelpDriver();
+
+// 发送短信
+$sms_help->send('手机号', [
+    '模板参数1',
+])
+```
+
 ## ...
 
 # todo

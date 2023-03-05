@@ -11,17 +11,18 @@ class TencentCloudSdk extends LaravelFacade
     {
         return TencentCloudManage::class;
     }
-    
+
     /**
      * 使用 xx 服务
-     * @param string $name 服务名称
+     * @param string        $name   服务名称
+     * @param string | null $region 地区
      * @return
      */
-    public static function with($name)
+    public static function with($name, $region = null)
     {
-        return static::getFacadeRoot()->with($name);
+        return static::getFacadeRoot()->with($name, $region);
     }
-    
+
     /**
      * live
      * @return \TencentCloud\Live\V20180801\LiveClient
@@ -39,7 +40,7 @@ class TencentCloudSdk extends LaravelFacade
     {
         return self::with('liveHelp');
     }
-    
+
     /**
      * cvm
      * @return \TencentCloud\Cvm\V20170312\CvmClient
@@ -60,15 +61,6 @@ class TencentCloudSdk extends LaravelFacade
     }
 
     /**
-     * sms
-     * @return \TencentCloud\Sms\V20210111\SmsClient
-     */
-    public static function createSmsDriver()
-    {
-        return self::with('sms');
-    }
-    
-    /**
      * live help
      * @return Help\TrtcHelp
      */
@@ -76,13 +68,22 @@ class TencentCloudSdk extends LaravelFacade
     {
         return self::with('trtcHelp');
     }
-    
+
     /**
-     * user sig
-     * @return \Tencent\TLSSigAPIv2
+     * sms
+     * @return \TencentCloud\Sms\V20210111\SmsClient
      */
-    public static function userSig()
+    public static function createSmsDriver($region = null)
     {
-        return new \Tencent\TLSSigAPIv2();
+        return self::with('sms', $region);
+    }
+
+    /**
+     * sms help
+     * @return Help\SmsHelp
+     */
+    public static function createSmsHelpDriver()
+    {
+        return self::with('smsHelp');
     }
 }
