@@ -18,9 +18,9 @@ class SmsHelp
     /**
      * 发送短信
      * @url https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms
-     * @param $phone 手机号
-     * @param $template_params 短信模板参数
-     * @param $req_params 请求参数
+     * @param string $phone           手机号
+     * @param array  $template_params 短信模板参数
+     * @param array  $req_params      请求参数
      * @return false|string
      */
     public function send($phone, $template_params = [], $req_params = [])
@@ -37,7 +37,7 @@ class SmsHelp
 
         $sms = TencentCloudSdk::createSmsDriver($this->region());
         $rep = $sms->SendSms($req);
-        
+
         return $rep->toJsonString();
     }
 }
